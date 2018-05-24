@@ -66,13 +66,17 @@
 /*
  * connect {}: define a server to connect to
  */
+ {% if connect_enabled %}
 .include "connect.conf"
+ {% endif %}
 
 /*
  * cluster {}:  servers that share klines/unkline/xline/unxline/resv/unresv/locops
  * automatically
  */
+ {% if cluster_enabled %}
 .include "cluster.conf"
+ {% endif %}
 
 /*
  * shared {}: users that are allowed to remote kline

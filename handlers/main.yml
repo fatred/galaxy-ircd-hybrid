@@ -6,7 +6,8 @@
     - Check if ircd running
     - Stop ircd after check
     - Start ircd
-    - Test connection
+    - Test connection to plaintext
+    - Test connection to ssl
 
 - name: Check if ircd running
   shell: ps aux | grep ircd
@@ -23,10 +24,20 @@
     name: ircd-hybrid
     state: started
 
-- name: Test connection
+- name: Test connection to plaintext
   irc:
      server: localhost
      port: "{{ plaintext_port }}"
      channel: "#does_not_exist"
      nick: "ansible_test"
      msg: "Testing.."
+  when: "{{ plaintext_enabled }}"
+
+- name: Test connection to ssl
+  irc:
+     server: localhost
+     port: "{{ ssl_port }}"
+     channel: "#does_not_exist"
+     nick: "ansible_test"
+     msg: "Testing.."
+  when: "{{ ssl_enabled }}"

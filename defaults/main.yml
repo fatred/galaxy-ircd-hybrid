@@ -54,7 +54,7 @@ plaintext_port: 6667
 
 ## AUTH BLOCK
 # password used to auth to the ircd itself
-oper_password: "letmein_L0L!"
+oper_login_pass: "letmein_L0L!"
 # hostname to spoof oper user behind
 oper_spoof_host: "oper.bofh.org"
 
@@ -62,15 +62,17 @@ oper_spoof_host: "oper.bofh.org"
 # oper username
 oper_name: "G0d"
 # plaintext: fatred FIXME!!!
-oper_password: "$6$BwJSAQEgEnWZ77AZ$oRsOu/7D5kNjlkGqy9e5mgSf2XPvPUZ8pP.481Lw.0bdSPq4zDESMoHVD3Xn82c8Vcj8amGtYYNetF88dq4Q6/"
+oper_auth_pass: "$6$BwJSAQEgEnWZ77AZ$oRsOu/7D5kNjlkGqy9e5mgSf2XPvPUZ8pP.481Lw.0bdSPq4zDESMoHVD3Xn82c8Vcj8amGtYYNetF88dq4Q6/"
 # should the oper be on an SSL connection?
 oper_ssl_conn_required: "yes"
 
 ## CONNECT BLOCK
 # nothing
+connect_enabled: false
 
 ## CLUSTER BLOCK
 # nothing
+cluster_enabled: false
 
 ## SHARED BLOCK
 # uses oper stuff
@@ -118,12 +120,12 @@ services:
 # nothing yet
 
 ## GENERAL BLOCK
-disable_ident_lookup: no
+disable_ident_lookup: "no"
 
 ## MODULES BLOCK
 # nothing yet
 
 ## LOG BLOCK
-use_logging: yes
+use_logging: "yes"
 logging_path_base: "var/log"
 log_file_size: "50"

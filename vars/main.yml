@@ -49,9 +49,9 @@ admin_email: "admin@server.example.net"
 oper_name: "G0d"
 # oper password from mkpasswd -6 FIXME
 # plaintext of this one: fatred
-oper_password: "$6$BwJSAQEgEnWZ77AZ$oRsOu/7D5kNjlkGqy9e5mgSf2XPvPUZ8pP.481Lw.0bdSPq4zDESMoHVD3Xn82c8Vcj8amGtYYNetF88dq4Q6/"
+oper_auth_pass: "$6$BwJSAQEgEnWZ77AZ$oRsOu/7D5kNjlkGqy9e5mgSf2XPvPUZ8pP.481Lw.0bdSPq4zDESMoHVD3Xn82c8Vcj8amGtYYNetF88dq4Q6/"
 # password used to auth opers to the ircd itself FIXME
-oper_password: "letmein_L0L!"
+oper_login_pass: "letmein_L0L!"
 # hostname to spoof oper user behind
 oper_spoof_host: "oper.bofh.org"
 # should the oper be on an SSL connection?

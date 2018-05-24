@@ -1,18 +1,46 @@
 ---
 - name: Generate a private key
+  become: "{{ ircd_user }}"
+  become_method: sudo
   openssl_privatekey:
-    path: "{{ ircd_conf_dir }}/cert.key"
+    path: "{{ ircd_conf_dir }}/rsa.key"
     size: 2048
 
 - name: Generate a CSR for the cert
+  become: "{{ ircd_user }}"
+  become_method: sudo
   openssl_csr:
     path: "{{ ircd_conf_dir }}/cert.csr"
-    privatekey_path: "{{ ircd_conf_dir }}/cert.key"
+    privatekey_path: "{{ ircd_conf_dir }}/rsa.key"
     common_name: "{{ ansible_host }}"
 
 - name: Generate a Self Signed OpenSSL certificate
+  become: "{{ ircd_user }}"
+  become_method: sudo
   openssl_certificate:
-    path: "{{ ircd_conf_dir }}/cert.crt"
-    privatekey_path: "{{ ircd_conf_dir }}/cert.key"
+    path: "{{ ircd_conf_dir }}/cert.pem"
+    privatekey_path: "{{ ircd_conf_dir }}/rsa.key"
     csr_path: "{{ ircd_conf_dir }}/cert.csr"
     provider: selfsigned
+
+- name: Check for dhparams file
+  stat:
+    path: "{{ ircd_conf_dir }}/dhparams.pem"
+  register: dhfile
+
+- name: Generate dhparams file (NOTE - TAKES AGES!)
+  become: "{{ ircd_user }}"
+  become_method: sudo
+  command: /usr/bin/openssl dhparam -out dhparams.pem 4096 chdir={{ ircd_conf_dir }}
+  when: not dhfile.stat.exists
+
+- name: fix permissions on certs
+  file:
+    path: "{{ ircd_conf_dir }}/{{ item }}"
+    owner: "{{ ircd_user }}"
+    group: "{{ ircd_user }}"
+  with_items:
+    - "rsa.key"
+    - "cert.csr"
+    - "cert.pem"
+    - "dhparams.pem"
