@@ -1,0 +1,73 @@
+channel {
+	/*
+	 * disable_fake_channels: this option, if set to 'yes', will
+	 * disallow clients from creating or joining channels that have one
+	 * of the following ASCII characters in their name:
+	 *
+	 *   2 | bold
+	 *   3 | mirc color
+	 *  15 | plain text
+	 *  22 | reverse
+	 *  29 | italic
+	 *  31 | underline
+	 * 160 | non-breaking space
+	 */
+	disable_fake_channels = yes;
+
+	/*
+	 * invite_client_count, invite_client_time: how many INVITE commands
+	 * are permitted per client per invite_client_time.
+	 */
+	invite_client_count = 10;
+	invite_client_time = 5 minutes;
+
+	/*
+	 * invite_delay_channel: how often an INVITE to any specific channel
+	 * is permitted, regardless of the user sending the INVITE.
+	 */
+	invite_delay_channel = 5 seconds;
+
+	/*
+	 * invite_expire_time: specifies the amount of time an INVITE will be
+	 * active until it expires. Set it to 0 if you don't want invites to
+	 * expire. Default is 30 minutes if nothing else is specified.
+	 */
+	invite_expire_time = 1 hour;
+
+	/*
+	 * knock_client_count, knock_client_time: how many KNOCK commands
+	 * are permitted per client per knock_client_time.
+	 */
+	knock_client_count = 1;
+	knock_client_time = 5 minutes;
+
+	/*
+	 * knock_delay_channel: how often a KNOCK to any specific channel
+	 * is permitted, regardless of the user sending the KNOCK.
+	 */
+	knock_delay_channel = 1 minute;
+
+	/*
+	 * max_channels: the maximum number of channels a user can join/be on.
+	 * This is a default value which can be overriden with class {} blocks.
+	 */
+	max_channels = 25;
+
+	/* max_invites: the maximum number of channels a user can be invited to. */
+	max_invites = 20;
+
+	/* max_bans: maximum number of +b/e/I modes in a channel. */
+	max_bans = 100;
+
+	/* max_bans_large: maximum number of +b/e/I modes in a +L channel. */
+	max_bans_large = 500;
+
+	/*
+	 * default_join_flood_count, default_join_flood_time:
+	 * how many joins in how many seconds constitute a flood. Use 0 to disable.
+	 * +b opers will be notified. These are only default values which can be
+	 * changed via "/QUOTE SET JFLOODCOUNT" and "/QUOTE SET JFLOODTIME".
+	 */
+	default_join_flood_count = 18;
+	default_join_flood_time = 6 seconds;
+};

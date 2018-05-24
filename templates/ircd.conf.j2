@@ -1,0 +1,151 @@
+/*
+ *
+ * Shell style (#), C++ style (//) and C style comments are supported.
+ *
+ * Files may be included by either:
+ *        .include "filename"
+ *        .include <filename>
+ *
+ * Times/durations are written as:
+ *        12 hours 30 minutes 1 second
+ *
+ * Valid units of time:
+ *        year, month, week, day, hour, minute, second
+ *
+ * Valid units of size:
+ *        megabyte/mbyte/mb, kilobyte/kbyte/kb, byte
+ *
+ * Sizes and times may be singular or plural.
+ */
+
+/*
+ * serverinfo {}:  contains information about the server
+ */
+.include "serverinfo.conf"
+
+/*
+ * admin {}:  contains administrative information about the server
+ */
+.include "admin.conf"
+
+/*
+ * class {}:  contains information about classes for users
+ */
+.include "class.conf"
+
+/*
+ * motd {}: Allows the display of a different MOTD to a client
+ * depending on its origin. Applies to local users only.
+ */
+.include "motd.conf"
+
+/*
+ * listen {}:  contains information about the ports ircd listens on
+ */
+.include "listen.conf"
+
+/*
+ * auth {}:  allow users to connect to the ircd
+ *
+ * ########################################################################
+ * IMPORTANT NOTE:
+ *
+ * auth {} blocks MUST be specified in order of precedence. The first one
+ * that matches a user will be used. So place spoofs first, then specials,
+ * then general access.
+ * ########################################################################
+ *
+ */
+.include "auth.conf"
+
+/*
+ * operator {}:  defines ircd operators
+ */
+.include "operator.conf"
+
+/*
+ * connect {}: define a server to connect to
+ */
+.include "connect.conf"
+
+/*
+ * cluster {}:  servers that share klines/unkline/xline/unxline/resv/unresv/locops
+ * automatically
+ */
+.include "cluster.conf"
+
+/*
+ * shared {}: users that are allowed to remote kline
+ *
+ * NOTE: This can effectively be used for remote klines.
+ *       Please note that there is no password authentication
+ *       for users setting remote klines. You must also be
+ *       /oper'd in order to issue a remote kline.
+ */
+.include "shared.conf"
+
+/*
+ * kill {}:  users that are not allowed to connect
+ * Oper issued klines will be added to the specified kline database
+ */
+.include "kill.conf"
+
+/*
+ * deny {}:  IP addresses that are not allowed to connect
+ * (before DNS/ident lookup)
+ * Oper issued dlines will be added to the specified dline database
+ */
+.include "deny.conf"
+
+/*
+ * exempt {}:  IP addresses that are exempt from deny {} and Dlines
+ */
+.include "exempt.conf"
+
+/*
+ * resv {}:  nicks and channels users may not use/join
+ */
+.include "resv.conf"
+
+/*
+ * gecos {}:  used for banning users based on their "realname".
+ */
+.include "gecos.conf"
+
+/*
+ * service {}: specifies a server which may act as a network service
+ *
+ * NOTE: it is very important that every server on the network
+ *       has the same service {} block.
+ */
+.include "service.conf"
+
+/*
+ * pseudo {}: adds pseudo/custom commands also known as service aliases
+ */
+.include "pseudo.conf"
+
+/*
+ * channel {}:  the channel block contains options pertaining to channels
+ */
+.include "channel.conf"
+
+/*
+ * serverhide {}:  the serverhide block contains the options regarding
+ * to server hiding. For more information regarding server hiding,
+ * please see doc/serverhide.txt
+ */
+.include "serverhide.conf"
+
+/*
+ * general {}:  the general block contains many of the options that were once
+ * compiled in options in config.h
+ */
+.include "general.conf"
+
+.include "modules.conf"
+
+/*
+ * log {}:  contains information about logfiles.
+ */
+.include "log.conf"

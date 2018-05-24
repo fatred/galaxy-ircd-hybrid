@@ -1,0 +1,32 @@
+---
+- name: Restart ircd
+  debug: msg="Determining if ircd-hybrid running first.."
+  changed_when: True
+  notify:
+    - Check if ircd running
+    - Stop ircd after check
+    - Start ircd
+    - Test connection
+
+- name: Check if ircd running
+  shell: ps aux | grep ircd
+  changed_when: "'bin/ircd' in cmd.stdout"
+  register: cmd
+
+- name: Stop ircd after check
+  systemd:
+    name: ircd-hybrid
+    state: stopped
+
+- name: Start ircd
+  systemd:
+    name: ircd-hybrid
+    state: started
+
+- name: Test connection
+  irc:
+     server: localhost
+     port: "{{ plaintext_port }}"
+     channel: "#does_not_exist"
+     nick: "ansible_test"
+     msg: "Testing.."

@@ -1,0 +1,5 @@
+exempt {
+  {% for exempted_user in exempted_users %}
+	ip = "{{ exempted_user.ip }}";
+  {% endfor %}
+};

@@ -1,0 +1,40 @@
+---
+- name: Create irc user
+  user:
+    name: "{{ ircd_user }}"
+    state: present
+
+- name: Clear install directory
+  file:
+     path: "{{ ircd_install_dir }}"
+     state: absent
+
+- name: Create install directory
+  file:
+     path: "{{ ircd_install_dir }}"
+     state: directory
+     owner: "{{ ircd_user }}"
+     group: "{{ ircd_user }}"
+
+- name: Download ircd
+  become: true
+  become_user: "{{ ircd_user }}"
+  git:
+    repo: https://github.com/ircd-hybrid/ircd-hybrid.git
+    version: "{{ ircd_branch }}"
+    dest: "{{ ircd_install_dir }}"
+
+- name: Configure ircd
+  become: true
+  become_user: "{{ ircd_user }}"
+  command: ./configure --disable-interactive --prefix="{{ ircd_home_dir }}" chdir="{{ ircd_install_dir }}"
+
+- name: Build ircd
+  become: true
+  become_user: "{{ ircd_user }}"
+  command: make chdir="{{ ircd_install_dir }}"
+
+- name: Install ircd
+  become: true
+  become_user: "{{ ircd_user }}"
+  command: make install chdir="{{ ircd_install_dir }}"

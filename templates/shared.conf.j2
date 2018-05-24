@@ -1,0 +1,31 @@
+shared {
+	/*
+	 * name: the server the user must be connected to in order to set klines.
+	 * If this is not specified, the user will be allowed to kline from all
+	 * servers.
+	 */
+	name = "{{ server_name }}";
+
+	/*
+	 * user: the user@host mask that is allowed to set klines. If this is
+	 * not specified, all users on the server above will be allowed to set
+	 * a remote kline.
+	 */
+	user = "{{ oper_name }}@{{ oper_spoof_host }}";
+
+	/*
+	 * type: list of what to share, options are as follows:
+	 *      dline   - allow oper/server to dline
+	 *      undline - allow oper/server to undline
+	 *      kline   - allow oper/server to kline
+	 *      unkline - allow oper/server to unkline
+	 *      xline   - allow oper/server to xline
+	 *      unxline - allow oper/server to unxline
+	 *      rehash  - allow oper/server to rehash
+	 *      resv    - allow oper/server to resv
+	 *      unresv  - allow oper/server to unresv
+	 *      locops  - allow oper/server to locops - only used for servers that cluster
+	 *      all     - allow oper/server to do all of the above (default)
+	 */
+	type = kline, unkline, resv;
+};

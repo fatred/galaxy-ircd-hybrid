@@ -1,0 +1,52 @@
+log {
+	/* Do you want to enable logging to ircd.log? */
+	use_logging = {{ use_logging }};
+
+	file {
+		type = oper;
+		name = "{{ logging_path_base }}/oper.log";
+		size = {{ log_file_size }} megabytes;
+	};
+
+	file {
+		type = user;
+		name = "{{ logging_path_base }}/user.log";
+		size = {{ log_file_size }} megabytes;
+	};
+
+	file {
+		type = kill;
+		name = "{{ logging_path_base }}/kill.log";
+		size = {{ log_file_size }} megabytes;
+	};
+
+	file {
+		type = kline;
+		name = "{{ logging_path_base }}/kline.log";
+		size = {{ log_file_size }} megabytes;
+	};
+
+	file {
+		type = dline;
+		name = "{{ logging_path_base }}/dline.log";
+		size = {{ log_file_size }} megabytes;
+	};
+
+	file {
+		type = xline;
+		name = "{{ logging_path_base }}/xline.log";
+		size = {{ log_file_size }} megabytes;
+	};
+
+	file {
+		type = resv;
+		name = "{{ logging_path_base }}/resv.log";
+		size = {{ log_file_size }} megabytes;
+	};
+
+	file {
+		type = debug;
+		name = "{{ logging_path_base }}/debug.log";
+		size = {{ log_file_size }} megabytes;
+	};
+};

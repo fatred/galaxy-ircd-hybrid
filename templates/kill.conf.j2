@@ -1,0 +1,6 @@
+kill {
+  {% for killed_user in killed_users %}
+	user = "{{ killed_user.user }}";
+	reason = "{{ killed_user.reason }}";
+  {% endfor %}
+};

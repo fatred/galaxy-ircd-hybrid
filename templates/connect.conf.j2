@@ -1,0 +1,75 @@
+connect {
+	/* name: the name of the server. */
+#	name = "uplink.example.net";
+
+	/*
+	 * host: the host or IP address to connect to. If a hostname is used,
+	 * it must match the reverse DNS of the server.
+	 */
+#	host = "192.0.2.4";
+
+	/*
+	 * vhost: the IP address to bind to when making outgoing connections to
+	 * servers. serverinfo::vhost and serverinfo::vhost6 will be overridden
+	 * by this directive.
+	 */
+#	vhost = "192.0.2.5";
+
+	/*
+	 * send_password, accept_password: the passwords to send and accept.
+	 * The remote server will have these passwords swapped.
+	 */
+#	send_password = "password";
+#	accept_password = "anotherpassword";
+
+	/*
+	 * encrypted: indicates whether the accept_password above has been
+	 * encrypted.
+	 */
+#	encrypted = no;
+
+	/* port: the port to connect to this server on. */
+#	port = 6666;
+
+	/*
+	 * hub_mask: the mask of servers that this server may hub. Multiple
+	 * entries are permitted.
+	 */
+#	hub_mask = "*";
+
+	/*
+	 * leaf_mask: the mask of servers this server may not hub. Multiple
+	 * entries are permitted. Useful for forbidding EU -> US -> EU routes.
+	 */
+#	leaf_mask = "*.uk";
+
+	/* class: the class this server is in. */
+#	class = "server";
+
+	/*
+	 * ssl_cipher_list: list of ciphers that the server we are connecting to
+	 * must support. If the server is not capable of using any of the ciphers
+	 * listed below, the connection will simply be rejected.
+	 * Can be used to enforce stronger ciphers, even though this option
+	 * is not necessarily required to establish a SSL/TLS connection.
+	 *
+	 * Multiple ciphers are separated by colons. The order of preference
+	 * is from left to right.
+	 */
+#	ssl_cipher_list = "ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-SHA:AES256-SHA";
+
+	/*
+	 * ssl_certificate_fingerprint: enhances security by additionally checking
+	 * the server's client certificate fingerprint against the specified
+	 * fingerprint below.
+	 */
+#	ssl_certificate_fingerprint = "4C62287BA6776A89CD4F8FF10A62FFB35E79319F51AF6C62C674984974FCCB1D";
+
+	/*
+	 * autoconn   - controls whether we autoconnect to this server or not,
+	 *              dependent on class limits. By default, this is disabled.
+	 * ssl        - Initiates a TLS/SSL connection.
+	 */
+#	flags = autoconn, ssl;
+};
+

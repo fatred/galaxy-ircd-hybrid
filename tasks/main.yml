@@ -1,0 +1,16 @@
+---
+- include: "install_dependencies.yml"
+
+- name: Determine if ircd-hybrid already installed
+  stat: path="{{ ircd_home_dir }}"
+  register: st
+
+- include: "install_ircd.yml"
+  when: not st.stat.exists
+
+- include: "certificate.yml"
+  when: ssl_enabled
+
+- include: "configure_ircd.yml"
+
+- include: "configure_systemd.yml"

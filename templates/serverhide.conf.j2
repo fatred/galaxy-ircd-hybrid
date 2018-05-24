@@ -1,0 +1,61 @@
+serverhide {
+	/*
+	 * disable_remote_commands: disable users issuing commands
+	 * on remote servers.
+	 */
+	disable_remote_commands = no;
+
+	/*
+	 * flatten_links: this option will show all servers in /links appear
+	 * as though they are linked to this current server.
+	 */
+	flatten_links = no;
+
+	/*
+	 * flatten_links_delay: how often to update the links file when it is
+	 * flattened.
+	 */
+	flatten_links_delay = 5 minutes;
+
+	/*
+	 * flatten_links_file: path to the flatten links cache file.
+	 */
+	flatten_links_file = "var/lib/links.txt";
+
+	/*
+	 * hidden: hide this server from a /links output on servers that
+	 * support it. This allows hub servers to be hidden etc.
+	 */
+	hidden = no;
+
+	/*
+	 * hide_servers: hide remote servernames everywhere and instead use
+	 * hidden_name and network_desc.
+	 */
+	hide_servers = no;
+
+	/*
+	 * hide_services: define this if you want to hide the location of
+	 * services servers that are specified in the service {} block.
+	 */
+	hide_services = no;
+
+	/*
+	 * hidden_name: use this as the servername users see if hide_servers = yes.
+	 */
+	hidden_name = "*.example.net";
+
+	/*
+	 * hide_server_ips: if this is disabled, opers will be unable to see
+	 * servers' IP addresses and will be shown a masked IP address; admins
+	 * will be shown the real IP address.
+	 *
+	 * If this is enabled, nobody can see a server's IP address.
+	 * *This is a kludge*: it has the side effect of hiding the IP addresses
+	 * everywhere, including logfiles.
+	 *
+	 * We recommend you leave this disabled, and just take care with who you
+	 * give administrator privileges to.
+	 */
+	hide_server_ips = no;
+};

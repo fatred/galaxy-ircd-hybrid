@@ -1,0 +1,129 @@
+---
+## INSTALL SETTINGS
+# ircd user
+ircd_user: "ircd"
+
+# Path where git repo is cloned to for install
+ircd_install_dir: "/home/{{ ircd_user }}/git"
+
+# Path where ircd-hybrid is installed
+ircd_home_dir: "/home/{{ ircd_user }}/ircd-hybrid"
+
+# Path where ircd-hybrid config files are created (do not edit)
+ircd_conf_dir: "{{ ircd_home_dir }}/etc"
+
+# ircd-hybrid branch to install from
+ircd_branch: 8.2
+
+## SERVERINFO BLOCK
+# Cosmetic server name and description
+server_name: "{{ ansible_host }}"
+server_desc: "ircd-hybrid test server"
+
+# IRC Network Name and Cosmetic Description
+network_name: "MyNet"
+network_desc: "My IRC Network"
+
+# IP Bindings
+vhost_ipv4: "*"
+vhost_ipv6: "*"
+
+# SSL
+ssl_enabled: True
+ssl_key_path: "etc/rsa.key"
+ssl_cert_path: "etc/cert.pem"
+ssl_dh_param_path: "etc/dhparams.pem"
+ssl_port: 6697
+
+## ADMIN BLOCK
+admin_name: "Smurf target"
+admin_desc: "Main Server Administrator"
+admin_email: "admin@server.example.net"
+
+## CLASS BLOCK
+# nothing
+
+## MOTD BLOCK
+# nothing
+
+## LISTEN BLOCK
+# plaintext listener enabled (probably True)
+plaintext_enabled: True
+# port that plaintext ircd listens on
+plaintext_port: 6667
+
+## AUTH BLOCK
+# password used to auth to the ircd itself
+oper_password: "letmein_L0L!"
+# hostname to spoof oper user behind
+oper_spoof_host: "oper.bofh.org"
+
+## OPERATOR BLOCK
+# oper username
+oper_name: "G0d"
+# plaintext: fatred FIXME!!!
+oper_password: "$6$BwJSAQEgEnWZ77AZ$oRsOu/7D5kNjlkGqy9e5mgSf2XPvPUZ8pP.481Lw.0bdSPq4zDESMoHVD3Xn82c8Vcj8amGtYYNetF88dq4Q6/"
+# should the oper be on an SSL connection?
+oper_ssl_conn_required: "yes"
+
+## CONNECT BLOCK
+# nothing
+
+## CLUSTER BLOCK
+# nothing
+
+## SHARED BLOCK
+# uses oper stuff
+
+## KILL BLOCK
+killed_users:
+  - user: "bad@*.example.net"
+    reason: "Obviously hacked account"
+  - user: "thing@host.notreal"
+    reason: "skiddy"
+
+## DENY BLOCK
+denied_users:
+  - ip: "192.168.168.0/32"
+    reason: "bot herder"
+
+## EXEMPTED BLOCK
+exempted_users:
+  - ip: localhost
+
+## RESV BLOCK
+# reserved nicknames
+resv_nicks:
+  - mask: "clone*"
+    reason: "Clone bots"
+
+resv_chans:
+  - mask: "#johnsux"
+    reason: "fuck off alex"
+
+## GECOS BLOCK
+# nothing
+
+## SERVICE BLOCK
+services:
+  - name: "service.example.net"
+
+## PSEUDO BLOCK
+# nothing yet
+
+## CHANNEL BLOCK
+# nothing yet
+
+## SERVERHIDE BLOCK
+# nothing yet
+
+## GENERAL BLOCK
+disable_ident_lookup: no
+
+## MODULES BLOCK
+# nothing yet
+
+## LOG BLOCK
+use_logging: yes
+logging_path_base: "var/log"
+log_file_size: "50"

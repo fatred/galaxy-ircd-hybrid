@@ -1,0 +1,22 @@
+listen {
+	/*
+	 * port: the port to listen on. If no host is specified earlier in the
+	 * listen {} block, it will listen on all available IP addresses.
+	 *
+	 * Ports are separated by commas; a range may be specified using ".."
+	 *
+	 * Currently available flags are:
+	 *
+	 *  ssl    - Port may only accept TLS/SSL connections
+	 *  server - Only server connections are permitted
+	 *  hidden - Port is hidden from /stats P, unless you're an admin
+	 */
+  {% if plaintext_enabled %}
+	port = {{ plaintext_port }};
+  {% endif %}
+
+  {% if ssl_enabled %}
+	flags = hidden, ssl;
+	port = {{ ssl_port }};
+  {% endif %}
+};

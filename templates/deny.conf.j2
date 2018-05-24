@@ -1,0 +1,6 @@
+deny {
+  {% for denied_user in denied_users %}
+	ip = "{{ denied_user.ip }}";
+	reason = "{{ denied_user.reason }}";
+  {% endfor %}
+};

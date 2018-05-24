@@ -1,0 +1,97 @@
+class {
+	/* name: the name of the class. */
+	name = "users";
+
+	/*
+	 * ping_time: how often a client must reply to a PING from the
+	 * server before they are dropped.
+	 */
+	ping_time = 90 seconds;
+
+	/*
+	 * number_per_ip_local: how many local users are allowed to connect
+	 * from a single IP address (optional)
+	 */
+	number_per_ip_local = 2;
+
+	/*
+	 * number_per_ip_global: how many global users are allowed to connect
+	 * from a single IP address (optional)
+	 */
+	number_per_ip_global = 8;
+
+	/*
+	 * max_number: the maximum number of users allowed in this class (optional)
+	 */
+	max_number = 100;
+
+	/*
+	 * The following lines are optional and allow you to define
+	 * how many users can connect from one /NN subnet.
+	 */
+	cidr_bitlen_ipv4 = 24;
+	cidr_bitlen_ipv6 = 120;
+	number_per_cidr = 16;
+
+	/*
+	 * sendq: the amount of data allowed in a client's send queue before
+	 * they are dropped.
+	 */
+	sendq = 100 kbytes;
+
+	/*
+	 * recvq: the amount of data allowed in a client's receive queue before
+	 * they are dropped for flooding. Defaults to 2560 if the chosen value
+	 * isn't within the range of 512 to 8000.
+	 */
+	recvq = 2560 bytes;
+};
+
+class {
+	name = "opers";
+	ping_time = 90 seconds;
+	number_per_ip_local = 10;
+	max_number = 100;
+	sendq = 100 kbytes;
+
+	/*
+	 * max_channels: maximum number of channels users in this class can join.
+	 */
+	max_channels = 60;
+
+	/*
+	 * min_idle: minimum idle time that is shown in WHOIS.
+	 */
+	min_idle = 3 hours;
+
+	/*
+	 * max_idle: maximum idle time that is shown in WHOIS.
+	 */
+	max_idle = 8 hours;
+
+	/*
+	 * flags:
+	 *
+	 * random_idle          - a fake idle time is set randomly between
+	 *                        min_idle and max_idle
+	 * hide_idle_from_opers - the fake idle time will also be shown to operators
+	 */
+	flags = random_idle, hide_idle_from_opers;
+};
+
+class {
+	name = "server";
+	ping_time = 90 seconds;
+
+	/*
+	 * connectfreq: only used in server classes. Specifies the delay
+	 * between autoconnecting to servers.
+	 */
+	connectfreq = 5 minutes;
+
+	/* max number: the number of servers to autoconnect to. */
+	max_number = 1;
+
+	/* sendq: servers need a higher sendq as they send more data. */
+	sendq = 2 megabytes;
+};

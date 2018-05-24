@@ -1,0 +1,58 @@
+---
+## example vars file for your playbooks.
+# ircd user
+ircd_user: "ircd"
+
+# Path where git repo is cloned to for install
+ircd_install_dir: "/home/{{ ircd_user }}/git"
+
+# Path where ircd-hybrid is installed
+ircd_home_dir: "/home/{{ ircd_user }}/ircd-hybrid"
+
+# Path where ircd-hybrid config files are created (do not edit)
+ircd_conf_dir: "{{ ircd_home_dir }}/etc"
+
+# ircd-hybrid branch to install from
+ircd_branch: 8.2
+
+## SERVERINFO BLOCK
+# Cosmetic server name and description
+server_name: "{{ ansible_host }}"
+server_desc: "ircd-hybrid test server"
+
+# IRC Network Name and Cosmetic Description
+network_name: "MyNet"
+network_desc: "My IRC Network"
+
+# IP Bindings
+vhost_ipv4: "*"
+vhost_ipv6: "*"
+
+# Plaintext service
+plaintext_enabled: True
+plaintext_port: 6667
+
+# SSL service
+# disable if you cant be bothered with the drama FIXME
+ssl_enabled: True
+ssl_key_path: "etc/rsa.key"
+ssl_cert_path: "etc/cert.pem"
+ssl_dh_param_path: "etc/dhparams.pem"
+ssl_port: 6697
+
+## Admin/Oper settings
+admin_name: "Smurf target"
+admin_desc: "Main Server Administrator"
+admin_email: "admin@server.example.net"
+
+# oper username FIXME
+oper_name: "G0d"
+# oper password from mkpasswd -6 FIXME
+# plaintext of this one: fatred
+oper_password: "$6$BwJSAQEgEnWZ77AZ$oRsOu/7D5kNjlkGqy9e5mgSf2XPvPUZ8pP.481Lw.0bdSPq4zDESMoHVD3Xn82c8Vcj8amGtYYNetF88dq4Q6/"
+# password used to auth opers to the ircd itself FIXME
+oper_password: "letmein_L0L!"
+# hostname to spoof oper user behind
+oper_spoof_host: "oper.bofh.org"
+# should the oper be on an SSL connection?
+oper_ssl_conn_required: "yes"

@@ -1,0 +1,17 @@
+- name: Setup systemd unit file
+  template:
+     src: ircd-hybrid.j2
+     dest: "/lib/systemd/system/ircd-hybrid.service"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: enable ircd-hybrid service at startup
+  systemd:
+    name: ircd-hybrid
+    enabled: yes

@@ -1,0 +1,13 @@
+[Unit]
+Description=ircd-hybrid
+After=network.target
+
+[Service]
+ExecStart={{ ircd_home_dir }}/bin/ircd -configfile {{ ircd_conf_dir }}/ircd.conf
+Restart=on-failure
+User={{ ircd_user }}
+Group={{ ircd_user }}
+WorkingDirectory={{ ircd_home_dir }}
+
+[Install]
+WantedBy=multi-user.target

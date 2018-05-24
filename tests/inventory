@@ -1,0 +1,2 @@
+[irc_servers]
+192.168.99.108 ansible_user=root

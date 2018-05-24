@@ -1,0 +1,18 @@
+---
+- name: Generate a private key
+  openssl_privatekey:
+    path: "{{ ircd_conf_dir }}/cert.key"
+    size: 2048
+
+- name: Generate a CSR for the cert
+  openssl_csr:
+    path: "{{ ircd_conf_dir }}/cert.csr"
+    privatekey_path: "{{ ircd_conf_dir }}/cert.key"
+    common_name: "{{ ansible_host }}"
+
+- name: Generate a Self Signed OpenSSL certificate
+  openssl_certificate:
+    path: "{{ ircd_conf_dir }}/cert.crt"
+    privatekey_path: "{{ ircd_conf_dir }}/cert.key"
+    csr_path: "{{ ircd_conf_dir }}/cert.csr"
+    provider: selfsigned

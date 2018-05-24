@@ -1,0 +1,6 @@
+service {
+	/* name: the actual name of the service. Wildcards are not allowed. */
+  {% for service in services %}
+	name = "{{ service.name }}";
+  {% endfor %}
+};

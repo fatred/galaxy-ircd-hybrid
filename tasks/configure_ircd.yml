@@ -1,0 +1,266 @@
+---
+- name: Copy admin.conf
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: admin.conf.j2
+     dest: "{{ ircd_conf_dir }}/admin.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy auth.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: auth.conf.j2
+     dest: "{{ ircd_conf_dir }}/auth.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy channel.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: channel.conf.j2
+     dest: "{{ ircd_conf_dir }}/channel.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy class.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: class.conf.j2
+     dest: "{{ ircd_conf_dir }}/class.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy cluster.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: cluster.conf.j2
+     dest: "{{ ircd_conf_dir }}/cluster.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy connect.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: connect.conf.j2
+     dest: "{{ ircd_conf_dir }}/connect.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy deny.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: deny.conf.j2
+     dest: "{{ ircd_conf_dir }}/deny.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy exempt.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: exempt.conf.j2
+     dest: "{{ ircd_conf_dir }}/exempt.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy gecos.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: gecos.conf.j2
+     dest: "{{ ircd_conf_dir }}/gecos.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy general.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: general.conf.j2
+     dest: "{{ ircd_conf_dir }}/general.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy ircd.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: ircd.conf.j2
+     dest: "{{ ircd_conf_dir }}/ircd.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy ircd.motd.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: ircd.motd.j2
+     dest: "{{ ircd_conf_dir }}/ircd.motd"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy kill.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: kill.conf.j2
+     dest: "{{ ircd_conf_dir }}/kill.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy listen.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: listen.conf.j2
+     dest: "{{ ircd_conf_dir }}/listen.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy log.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: log.conf.j2
+     dest: "{{ ircd_conf_dir }}/log.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy modules.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: modules.conf.j2
+     dest: "{{ ircd_conf_dir }}/modules.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy motd.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: motd.conf.j2
+     dest: "{{ ircd_conf_dir }}/motd.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy operator.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: operator.conf.j2
+     dest: "{{ ircd_conf_dir }}/operator.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy pseudo.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: pseudo.conf.j2
+     dest: "{{ ircd_conf_dir }}/pseudo.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy resv.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: resv.conf.j2
+     dest: "{{ ircd_conf_dir }}/resv.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy serverhide.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: serverhide.conf.j2
+     dest: "{{ ircd_conf_dir }}/serverhide.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy serverinfo.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: serverinfo.conf.j2
+     dest: "{{ ircd_conf_dir }}/serverinfo.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy service.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: service.conf.j2
+     dest: "{{ ircd_conf_dir }}/service.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+- name: Copy shared.conf.j2
+  become: true
+  become_user: "{{ ircd_user }}"
+  template:
+     src: shared.conf.j2
+     dest: "{{ ircd_conf_dir }}/shared.conf"
+     force: yes
+     backup: yes
+  notify:
+    - Restart ircd
+
+

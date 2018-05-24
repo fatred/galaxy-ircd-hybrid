@@ -1,0 +1,125 @@
+operator {
+	/* name: the name of the operator */
+	name = "{{ oper_name }}";
+
+	/*
+	 * user: the user@host required for this operator. Multiple user
+	 * lines are permitted within each operator {} block.
+	 */
+	user = "{{ oper_name }}@localhost";
+
+	/*
+	 * password: the password required to oper. By default this will need
+	 * to be encrypted using the provided mkpasswd tool.
+	 * The availability of various password hashing algorithms may vary
+	 * depending on the system's crypt(3) implementation.
+	 */
+	password = "{{ oper_password }}";
+
+	/*
+	 * encrypted: indicates whether the oper password above has been
+	 * encrypted. Default is 'yes' if nothing else is specified.
+	 */
+	encrypted = yes;
+
+	/*
+	 * ssl_certificate_fingerprint: enhances security by additionally checking
+	 * the oper's client certificate fingerprint against the specified
+	 * fingerprint below.
+	 *
+	 * Hint: your users can use the following commands to obtain a SHA-256 hash
+	 * of their ssl certificate:
+	 *
+	 * OpenSSL/LibreSSL:
+	 *    openssl x509 -sha256 -noout -fingerprint -in cert.pem | sed -e 's/^.*=//;s/://g'
+	 *
+	 * GnuTLS:
+	 *    certtool -i < cert.pem | egrep -A 1 'SHA256 fingerprint'
+	 */
+#	ssl_certificate_fingerprint = "4C62287BA6776A89CD4F8FF10A62FFB35E79319F51AF6C62C674984974FCCB1D";
+
+	/*
+	 * ssl_connection_required: client must be connected over SSL/TLS
+	 * in order to be able to use this operator {} block.
+	 * Default is 'no' if nothing else is specified.
+	 */
+	ssl_connection_required = {{ oper_ssl_conn_required }};
+
+	/* class: the class the oper joins when they successfully OPER. */
+	class = "opers";
+
+	/*
+	 * whois: allows overriding the default RPL_WHOISOPERATOR numeric
+	 * string shown in WHOIS.
+	 * This string is propagated to all servers on the network.
+	 */
+#	whois = "is a Smurf Target (IRC Operator)";
+
+	/*
+	 * umodes: the default user modes opers get when they successfully OPER.
+	 * If defined, it will override oper_umodes settings in general {}.
+	 * Available user modes:
+	 *
+	 * +b - bots         - See bot and drone flooding notices
+	 * +c - cconn        - Client connection/quit notices
+	 * +D - deaf         - Don't receive channel messages
+	 * +d - debug        - See debugging notices
+	 * +e - external     - See remote server connection and split notices
+	 * +F - farconnect   - Remote client connection/quit notices
+	 * +f - full         - See auth {} block full notices
+	 * +G - softcallerid - Server Side Ignore for users not on your channels
+	 * +g - callerid     - Server Side Ignore (for privmsgs etc)
+	 * +H - hidden       - Hides IRC operator status to other users
+	 * +i - invisible    - Not shown in NAMES or WHO unless you share a channel
+	 * +j - rej          - See rejected client notices
+	 * +k - skill        - See server generated KILL messages
+	 * +l - locops       - See LOCOPS messages
+	 * +n - nchange      - See client nick changes
+	 * +p - hidechans    - Hides channel list in WHOIS
+	 * +q - hideidle     - Hides idle and signon time in WHOIS
+	 * +R - nononreg     - Only receive private messages from registered clients
+	 * +s - servnotice   - See general server notices
+	 * +u - unauth       - See unauthorized client notices
+	 * +w - wallop       - See server generated WALLOPS
+	 * +y - spy          - See LINKS, STATS, TRACE notices etc.
+	 */
+	umodes = locops, servnotice, wallop;
+
+	/*
+	 * flags: controls the activities and commands an oper is
+	 * allowed to do on the server. All flags default to 'no'.
+	 * Available flags:
+	 *
+	 * admin          - gives administrator privileges        | ('A' flag)
+	 * close          - allows CLOSE                          | ('B' flag)
+	 * connect        - allows local CONNECT                  | ('C' flag)
+	 * connect:remote - allows remote CONNECT                 | ('D' flag)
+	 * die            - allows DIE                            | ('E' flag)
+	 * dline          - allows DLINE                          | ('F' flag)
+	 * globops        - allows GLOBOPS                        | ('G' flag)
+	 * join:resv      - allows to JOIN resv {} channels       | ('H' flag)
+	 * kill           - allows to KILL local clients          | ('I' flag)
+	 * kill:remote    - allows remote users to be /KILL'd     | ('J' flag)
+	 * kline          - allows KLINE                          | ('K' flag)
+	 * locops         - allows LOCOPS                         | ('L' flag)
+	 * module         - allows MODULE                         | ('M' flag)
+	 * nick:resv      - allows to use NICK on resv {} nicks   | ('N' flag)
+	 * opme           - allows OPME                           | ('O' flag)
+	 * rehash         - allows oper to REHASH config          | ('P' flag)
+	 * rehash:remote  - allows oper to remotely REHASH config | ('Q' flag)
+	 * remoteban      - allows remote KLINE/UNKLINE           | ('R' flag)
+	 * restart        - allows RESTART                        | ('S' flag)
+	 * resv           - allows RESV                           | ('T' flag)
+	 * set            - allows SET                            | ('U' flag)
+	 * squit          - allows local SQUIT                    | ('V' flag)
+	 * squit:remote   - allows remote SQUIT                   | ('W' flag)
+	 * undline        - allows UNDLINE                        | ('X' flag)
+	 * unkline        - allows UNKLINE                        | ('Y' flag)
+	 * unresv         - allows UNRESV                         | ('Z' flag)
+	 * unxline        - allows UNXLINE                        | ('a' flag)
+	 * wallops        - allows WALLOPS                        | ('b' flag)
+	 * xline          - allows XLINE                          | ('c' flag)
+	 */
+	flags = admin, connect, connect:remote, die, globops, kill, kill:remote,
+		kline, module, rehash, restart, set, unkline, unxline, xline;
+};

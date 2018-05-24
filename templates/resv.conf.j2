@@ -1,0 +1,19 @@
+resv { mask = "Global"; reason = "Reserved for services"; };
+resv { mask = "ChanServ"; reason = "Reserved for services"; };
+resv { mask = "NickServ"; reason = "Reserved for services"; };
+resv { mask = "OperServ"; reason = "Reserved for services"; };
+resv { mask = "MemoServ"; reason = "Reserved for services"; };
+resv { mask = "BotServ"; reason = "Reserved for services"; };
+resv { mask = "HelpServ"; reason = "Reserved for services"; };
+resv { mask = "HostServ"; reason = "Reserved for services"; };
+resv { mask = "StatServ"; reason = "Reserved for services"; };
+resv { mask = "#*services*"; reason = "Reserved for services"; };
+
+{% for resv_nick in resv_nicks %}
+resv { mask = "{{ resv_nick.mask }}"; reason = "{{ resv_nick.reason }}"; };
+{% endfor %}
+
+{% for resv_chan in resv_chans %}
+resv { mask = "{{ resv_chan.mask }}"; reason = "{{ resv_chan.reason }}"; };
+{% endfor %}
+

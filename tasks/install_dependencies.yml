@@ -1,0 +1,17 @@
+---
+- name: Install development tools
+  apt:
+    name:
+      - 'build-essential'
+      - 'python-pip'
+    state: present
+
+- name: Install pyOpenSSL module
+  pip:
+    name: pyopenssl
+
+- name: Install git
+  apt:
+    name: 'git'
+    state: present
+
