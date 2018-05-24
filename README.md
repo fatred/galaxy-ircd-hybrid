@@ -1,4 +1,4 @@
-Role Name
+ircd-hybrid
 =========
 
 This role installs and configures an [ircd-hybrid](http://www.ircd-hybrid.org/) IRC server using a minimal set of configuration options.
