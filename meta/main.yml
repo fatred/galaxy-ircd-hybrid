@@ -9,7 +9,7 @@ galaxy_info:
 
   license: BSD
 
-  min_ansible_version: 1.9.6
+  min_ansible_version: 2.4.0
 
   # Optionally specify the branch Galaxy will use when accessing the GitHub
   # repo for this role. During role install, if no tags are available,
@@ -24,6 +24,7 @@ galaxy_info:
   - name: Ubuntu
     versions:
     - xenial
+    - bionic
 
   # Tags - keywords that describes and categorizes the role.
   galaxy_tags:
