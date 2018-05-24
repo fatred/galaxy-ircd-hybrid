@@ -14,6 +14,7 @@
   changed_when: "'bin/ircd' in cmd.stdout"
   register: cmd
 
+# bin/ircd -configfile etc/ircd.conf
 - name: Stop ircd after check
   systemd:
     name: ircd-hybrid
@@ -24,6 +25,18 @@
     name: ircd-hybrid
     state: started
 
+- name: Wait for plaintext port
+  wait_for:
+    port: "{{ plaintext_port }}"
+    delay: 10
+  when: plaintext_enabled
+
+- name: Wait for ssl port
+  wait_for:
+    port: "{{ ssl_port }}"
+    delay: 10
+  when: ssl_enabled
+
 - name: Test connection to plaintext
   irc:
      server: localhost
@@ -31,7 +44,7 @@
      channel: "#does_not_exist"
      nick: "ansible_test"
      msg: "Testing.."
-  when: "{{ plaintext_enabled }}"
+  when: plaintext_enabled
 
 - name: Test connection to ssl
   irc:
@@ -40,4 +53,4 @@
      channel: "#does_not_exist"
      nick: "ansible_test"
      msg: "Testing.."
-  when: "{{ ssl_enabled }}"
+  when: ssl_enabled

@@ -140,7 +140,11 @@ serverinfo {
 	 *
 	 * This directive currently doesn't do anything with GnuTLS support.
 	 */
+	{% if ssl_enabled %}
+	ssl_dh_elliptic_curve = "secp521r1";
+	{% else %}
 #	ssl_dh_elliptic_curve = "secp521r1";
+    {% endif %}
 
 	/*
 	 * ssl_cipher_list: list of ciphers to support on _this_ server.
@@ -160,7 +164,11 @@ serverinfo {
 	 * Multiple ciphers are separated by colons. The order of preference is
 	 * from left to right.
 	 */
+	{% if ssl_enabled %}
+	ssl_cipher_list = "ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-SHA:AES256-SHA";
+	{% else %}
 #	ssl_cipher_list = "ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-SHA:AES256-SHA";
+    {% endif %}
 
 	/*
 	 * ssl_message_digest_algorithm: defines which cryptographic hash function
@@ -175,5 +183,9 @@ serverinfo {
 	 * GnuTLS:
 	 *    gnutls-cli --list
 	 */
+	{% if ssl_enabled %}
+    ssl_message_digest_algorithm = "sha256";
+    {% else %}
 #	ssl_message_digest_algorithm = "sha256";
+    {% endif %}
 };
