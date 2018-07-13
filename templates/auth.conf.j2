@@ -45,7 +45,8 @@ auth {
 	user = "*@*";
 	class = "users";
 	//flags = need_ident;
-	{% if user_login_pass %}
+	{% if user_login %}
 	password = "{{ user_login_pass }}";
+	flags = need_password;
 	{% endif %}
 };

@@ -57,6 +57,10 @@ plaintext_port: 6667
 oper_login_pass: "letmein_L0L!"
 # hostname to spoof oper user behind
 oper_spoof_host: "oper.bofh.org"
+# user login required?
+user_login: False
+# user password
+user_login_pass: 1234qwer
 
 ## OPERATOR BLOCK
 # oper username
